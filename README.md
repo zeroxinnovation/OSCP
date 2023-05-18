@@ -1,2 +1,2 @@
 # OSCP
-Following repository contains commands and instructions useful for OSCP preparation
+This repository contains commands and instructions useful for OSCP preparation
