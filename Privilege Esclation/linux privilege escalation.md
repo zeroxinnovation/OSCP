@@ -10,9 +10,9 @@
 
 https://tryhackme.com/room/linuxprivesc
 
-ssh user@10.10.113.192
+ssh user@1.1.1.1
 
-ssh -oHostKeyAlgorithms=+ssh-dss user@10.10.0.246
+ssh -oHostKeyAlgorithms=+ssh-dss user@1.1.1.1
 
 pass:password321
 
