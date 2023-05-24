@@ -6,6 +6,16 @@
 
 # MISCONFIGURATIONS/VULNERABILITIES EXPLOITATION 
 
+## TRYHACKME
+
+https://tryhackme.com/room/linuxprivesc
+
+ssh user@10.10.113.192
+
+ssh -oHostKeyAlgorithms=+ssh-dss user@10.10.0.246
+
+pass:password321
+
 ## CATEGORY "SUID / SGID EXECUTEABLES" - ABUSING SHELL FEATURES 2
 
 ```
