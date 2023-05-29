@@ -104,3 +104,23 @@ sc start daclsvc
 ```
 
 
+
+
+zenmap
+Kali Linux
+vmware player
+Kali Linux 
+nessus
+burpsuite
+lightsoot
+greenshot
+7-zip
+notepad++
+visul studio code
+
+
+
+
+
+
+
