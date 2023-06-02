@@ -134,6 +134,42 @@ https://shagihan.medium.com/what-is-certificate-chain-and-how-to-verify-them-be4
 
 
 
+Root CA
+Subject: name of the root CA
+Issuer: name of the root CA
+
+
+Intermediate CA
+Subject: Name of the intermediate CA
+Issuer: Name of the root CA
+
+
+Server Certificate
+Subject: Name of the certificate CA
+Issuer: Name of the intermediate CA
+
+
+
+
+USERTrust RSA Certification Authority
+Sectigo RSA Domain Validation Secure Server CA
+*.datalines.com.sg
+
+
+
+Root CA
+Subject: USERTrust RSA Certification Authority
+Issuer: USERTrust RSA Certification Authority
+
+
+Intermediate CA
+Subject: Sectigo RSA Domain Validation Secure Server CA
+Issuer: USERTrust RSA Certification Authority
+
+
+Server Certificate
+Subject: Sectigo RSA Domain Validation Secure Server CA
+Issuer: *.datalines.com.sg
 
 
 
