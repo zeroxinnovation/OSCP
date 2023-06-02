@@ -117,6 +117,21 @@ greenshot
 7-zip
 notepad++
 visul studio code
+wireshark
+
+sslscan 172.16.3.17:3389
+
+SMB Signing not required
+enum4linux -a 172.16.3.13   
+
+postgres pentest
+openvpn server 1194 pentest
+
+SSL CERTIFICATE CANNOT BE TRUSTED
+https://shagihan.medium.com/what-is-certificate-chain-and-how-to-verify-them-be429a030887
+
+└─$ curl -I https://shhq.datalines.com.sg/index.jsp
+
 
 
 
